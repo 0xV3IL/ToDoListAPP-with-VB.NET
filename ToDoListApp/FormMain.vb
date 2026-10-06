@@ -89,9 +89,10 @@ Public Class FormMain
 
     Private Sub UpdateStatus(dt As DataTable)
         Dim total As Integer = dt.Rows.Count
+        Dim priority As String = cboPriority.Text
         Dim done As Integer = dt.Select("is_completed=1").Length
         Dim dateInfo As String = If(useDateFilter, dtpFilterDate.Value.ToString("dd/MM/yyyy"), "-")
-        lblStatus.Text = $"Total: {total} | Selesai: {done} | Filter: {currentFilter} | Kategori: {If(String.IsNullOrEmpty(selectedCategory), "Semua", selectedCategory)} | Tanggal: {dateInfo}"
+        lblStatus.Text = $"Total: {total} | Selesai: {done} | Status: {currentFilter} | Prioritas: {priority} | Kategori: {If(String.IsNullOrEmpty(selectedCategory), "Semua", selectedCategory)} | Tanggal: {dateInfo}"
         If total > 0 Then
             prgStatus.Value = CInt(done / total * 100)
         Else
